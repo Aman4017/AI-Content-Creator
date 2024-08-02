@@ -51,15 +51,16 @@ function CreateNewContent(props:PROPS) {
   }
 
   const SaveIndb=async(formData:any, slug:any, aiResp:string)=>{
-    const result=await db.insert(AIOutput).values({
+
+    await db.insert(AIOutput).values({
       formData:formData,
       templateSlug:slug,
       aiResponse:aiResp,
       createdBy:user?.primaryEmailAddress?.emailAddress,
       createdAt:moment().format('DD/MM/yyyy'),
-    })
+    });
 
-    console.log(result);
+    // console.log(result);
   }
 
 
