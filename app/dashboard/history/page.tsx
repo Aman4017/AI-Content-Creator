@@ -1,6 +1,4 @@
 'use client';
-
-
 import { db } from '@/utils/db';
 import { drizzle } from 'drizzle-orm/neon-http';
 import React from 'react';
@@ -37,8 +35,8 @@ async function page() {
       </div>
       
       {data.map((item) => {
-        // Removing spaces from aiResponse
-        const formattedAIResponse = item.aiResponse.replace(/\s+/g, '');
+        // Removing spaces from aiResponse if it exists
+        const formattedAIResponse = item.aiResponse ? item.aiResponse.replace(/\s+/g, '') : '';
 
         // Extracting keywords from formData
         let keywords = '';
@@ -55,7 +53,7 @@ async function page() {
               <div className='flex-1 text-center'>{keywords}</div>
               <div className='flex-1 flex-col text-center overflow-hidden'>{formattedAIResponse}</div>
               <div
-                onClick={() => handleCopy(item.aiResponse)}
+                onClick={() => handleCopy(item.aiResponse || '')}
                 className='cursor-pointer flex-1 text-center text-purple-500 hover:text-purple-700'
               >
                 Copy
